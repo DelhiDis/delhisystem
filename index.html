@@ -308,6 +308,36 @@
             <p class="text-xs text-slate-600">Premium Doorstep Technical Hardware Deployments across Delhi NCR.</p>
         </div>
     </footer>
+    <!-- QR कोड पॉप-अप विंडो (Modal) स्ट्रक्चर -->
+    <div id="qrModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 9999; justify-content: center; align-items: center; padding: 20px;">
+        <div style="background: white; color: #333333; padding: 30px; border-radius: 16px; max-width: 400px; width: 100%; text-align: center; position: relative; box-shadow: 0 10px 25px rgba(0,0,0,0.3);">
+            <button onclick="closeQRModal()" style="position: absolute; top: 12px; right: 15px; font-size: 26px; background: none; border: none; color: #aaa; cursor: pointer; font-weight: bold;">×</button>
+            <h3 style="color: #1a73e8; font-weight: 700; margin-bottom: 5px; font-size: 20px;">🏠 Doorstep Home Visit</h3>
+            <p style="font-size: 13px; color: #666; margin-bottom: 15px;">Scan this official QR code via GPay, PhonePe, or Paytm to book instant technician deployment.</p>
+            
+            <!-- आपके क्यूआर कोड की इमेज फ़ाइल -->
+            <img src="qr-code.png" alt="Delhi Info System Payment QR" style="width: 220px; height: 220px; border: 2px solid #eee; padding: 8px; background: white; border-radius: 8px; margin: 0 auto 15px auto; display: block;">
+            
+            <div style="background: #f1f5f9; padding: 10px; border-radius: 8px; font-weight: 700; color: #0b1a30; font-size: 14px; border: 1px dashed #cbd5e0;">UPI ID: disservices712@okaxis</div>
+            <p style="font-size: 11px; color: #888; margin-top: 8px;">⚠️ Note: After successful scanning, kindly share the payment snapshot with our support team on WhatsApp.</p>
+        </div>
+    </div>
+
+    <!-- बटन और पॉप-अप को चालू/बंद करने की स्क्रिप्ट -->
+    <script>
+        function openQRModal() { 
+            document.getElementById('qrModal').style.display = 'flex'; 
+        }
+        function closeQRModal() { 
+            document.getElementById('qrModal').style.display = 'none'; 
+        }
+        window.onclick = function(event) {
+            var modal = document.getElementById('qrModal');
+            if (event.target == modal) { 
+                modal.style.display = 'none'; 
+            }
+        }
+    </script>
 
 </body>
 </html>
