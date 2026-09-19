@@ -4,340 +4,130 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Delhi Info System (DiS) | Professional IT & Security Solutions</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts से आपका असली प्रीमियम फॉन्ट -->
+    <link href="https://googleapis.com" rel="stylesheet">
+    <link rel="stylesheet" href="https://cloudflare.com">
+    
     <style>
-        html { scroll-behavior: smooth; }
-        .gradient-bg { background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%); }
+        /* मोबाइल पर बिना किसी रुकावट के सुपर-स्मूथ स्क्रॉलिंग और लाइटवेट इन-बिल्ट CSS */
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Poppins', sans-serif; }
+        html { scroll-behavior: smooth; -webkit-overflow-scrolling: touch; }
+        body { background-color: #f8fafc; color: #334155; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+
+        /* टॉप इंफो पट्टी */
+        .top-banner { background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%); color: white; padding: 10px 5%; display: flex; justify-content: space-between; align-items: center; font-size: 13px; font-weight: 500; }
+        .top-banner a { color: white; text-decoration: none; margin-right: 20px; }
+        .pulse-text { color: #fbbf24; font-weight: 700; display: flex; align-items: center; gap: 6px; }
+
+        /* मोबाइल फ्रेंडली वाइट हेडर */
+        header { background: rgba(255, 255, 255, 0.98); position: sticky; top: 0; z-index: 1000; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); border-bottom: 1px solid #f1f5f9; width: 100%; }
+        .nav-container { max-width: 1200px; margin: 0 auto; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; }
+        .logo-area { display: flex; align-items: center; gap: 12px; }
+        .logo-box { background: #2563eb; color: white; padding: 8px 14px; font-weight: 900; border-radius: 12px; font-size: 22px; }
+        .logo-text h1 { font-size: 20px; color: #0f172a; font-weight: 900; line-height: 1.1; }
+        .logo-text p { font-size: 11px; color: #2563eb; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; margin-top: 2px; }
+        
+        /* मेनू लिंक्स जो डेस्कटॉप पर दिखेंगे */
+        .nav-links { display: flex; align-items: center; gap: 28px; list-style: none; }
+        .nav-links a { text-decoration: none; color: #475569; font-weight: 700; font-size: 14px; transition: color 0.2s; }
+        .nav-links a:hover { color: #2563eb; }
+        
+        /* बटन ग्रुप (जो मोबाइल और कंप्यूटर दोनों पर हमेशा चालू रहेगा) */
+        .header-buttons { display: flex; gap: 10px; align-items: center; }
+        .btn-appointment { background: #2563eb; color: white; padding: 10px 20px; border-radius: 12px; font-weight: 700; border: none; cursor: pointer; font-size: 13px; transition: background 0.2s; }
+        .btn-appointment:hover { background: #1d4ed8; }
+        .btn-homevisit { background: #10b981; color: white; padding: 10px 20px; border-radius: 12px; font-weight: 700; border: none; cursor: pointer; font-size: 13px; transition: background 0.2s; }
+        .btn-homevisit:hover { background: #059669; }
+
+        /* हीरो सेक्शन */
+        .hero { background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%); color: white; padding: 80px 20px; text-align: center; position: relative; }
+        .certified-tag { background: rgba(59,130,246,0.2); border: 1px solid rgba(96,165,250,0.3); color: #93c5fd; font-weight: 800; padding: 6px 16px; border-radius: 9999px; font-size: 12px; text-transform: uppercase; display: inline-flex; align-items: center; gap: 6px; margin-bottom: 24px; }
+        .hero h2 { font-size: 44px; font-weight: 900; max-width: 850px; margin: 0 auto 20px auto; line-height: 1.25; }
+        .hero h2 span { color: #fbbf24; }
+        .hero p { font-size: 16px; color: #cbd5e1; max-width: 720px; margin: 0 auto 35px auto; line-height: 1.7; font-weight: 500; }
+        
+        .hero-buttons { display: flex; justify-content: center; gap: 14px; max-width: 500px; margin: 0 auto; }
+        .hero-btn-primary { background: #fbbf24; color: #0f172a; padding: 12px 24px; border-radius: 12px; font-weight: 800; text-decoration: none; font-size: 14px; box-shadow: 0 4px 12px rgba(251,191,36,0.2); text-align: center; }
+        .hero-btn-whatsapp { background: #059669; color: white; padding: 12px 24px; border-radius: 12px; font-weight: 800; text-decoration: none; font-size: 14px; display: inline-flex; align-items: center; gap: 8px; justify-content: center; }
+
+        /* सर्विसेज ग्रिड */
+        .services-section { max-width: 1200px; margin: 60px auto; padding: 0 20px; }
+        .section-header { text-align: center; margin-bottom: 40px; }
+        .section-header h3 { font-size: 30px; font-weight: 900; color: #0f172a; }
+        .section-header p { color: #64748b; margin-top: 8px; font-size: 15px; }
+        
+        .grid-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; }
+        .service-card { background: white; padding: 30px; border-radius: 20px; border: 1px solid #f1f5f9; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02); transition: transform 0.2s; }
+        .icon-box { width: 50px; height: 50px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 22px; font-weight: bold; margin-bottom: 20px; }
+        .icon-blue { background: #eff6ff; color: #2563eb; }
+        .icon-amber { background: #fef3c7; color: #d97706; }
+        .icon-purple { background: #f3e8ff; color: #9333ea; }
+        .service-card h4 { font-size: 18px; font-weight: 800; color: #0f172a; margin-bottom: 10px; }
+        .service-card p { color: #475569; font-size: 13.5px; line-height: 1.6; }
+
+        /* बुकिंग फॉर्म */
+        .booking-section { max-width: 600px; margin: 60px auto; padding: 0 20px; }
+        .form-box { background: white; padding: 30px; border-radius: 20px; border: 1px solid #f1f5f9; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); }
+        .form-box h3 { font-size: 24px; font-weight: 900; color: #0f172a; margin-bottom: 20px; text-align: center; }
+        .form-box input, .form-box textarea { width: 100%; padding: 12px; margin-bottom: 16px; border: 1px solid #e2e8f0; border-radius: 12px; font-size: 14px; color: #0f172a; outline: none; transition: border 0.2s; }
+        .form-box input:focus, .form-box textarea:focus { border-color: #2563eb; }
+        .btn-submit { width: 100%; background: #2563eb; color: white; padding: 14px; border-radius: 12px; font-weight: 700; border: none; cursor: pointer; font-size: 15px; }
+
+        /* QR कोड पॉप-अप */
+        .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 9999; justify-content: center; align-items: center; padding: 15px; }
+        .modal-box { background: white; color: #333333; padding: 30px; border-radius: 18px; max-width: 390px; width: 100%; text-align: center; position: relative; box-shadow: 0 20px 40px rgba(0,0,0,0.4); animation: popup 0.2s ease-out; }
+        @keyframes popup { from { transform: scale(0.95); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+        .close-btn { position: absolute; top: 10px; right: 15px; font-size: 26px; background: none; border: none; color: #aaa; cursor: pointer; font-weight: bold; }
+        .modal-box h3 { color: #2563eb; margin-bottom: 6px; font-size: 20px; font-weight: 700; }
+        .modal-box p { font-size: 13px; color: #555555; margin-bottom: 15px; line-height: 1.5; }
+        .qr-img { width: 220px; height: 220px; border: 2px solid #f1f5f9; padding: 8px; background: white; border-radius: 12px; margin: 0 auto 15px auto; display: block; }
+        .upi-id { background: #f8fafc; padding: 10px; border-radius: 10px; font-weight: 700; color: #0f172a; font-size: 13.5px; border: 1px dashed #cbd5e0; word-break: break-all; }
+
+        /* स्पेशल मोबाइल स्क्रीन ऑप्टिमाइजेशन */
+        @media (max-width: 768px) {
+            .nav-links, .top-banner div:last-child { display: none; }
+            .nav-container { padding: 12px 15px; }
+            .logo-text h1 { font-size: 17px; }
+            .logo-box { padding: 6px 10px; font-size: 18px; }
+            .hero { padding: 50px 15px; }
+            .hero h2 { font-size: 28px; }
+            .hero p { font-size: 14px; margin-bottom: 25px; }
+            .hero-buttons { flex-direction: column; gap: 10px; }
+            .hero-btn-primary, .hero-btn-whatsapp { width: 100%; padding: 12px; font-size: 14px; }
+            .header-buttons { gap: 6px; }
+            .btn-appointment, .btn-homevisit { padding: 8px 12px; font-size: 12px; border-radius: 8px; }
+            .services-section { margin: 40px auto; }
+            .section-header h3 { font-size: 24px; }
+            .form-box { padding: 20px; }
+        }
     </style>
 </head>
-<body class="bg-slate-50 text-slate-800 antialiased font-sans">
+<body>
 
-    <!-- Top Urgent Banner -->
-    <div class="gradient-bg text-white text-xs md:text-sm py-2.5 px-4 border-b border-blue-900/50">
-        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
-            <div class="flex flex-wrap justify-center items-center gap-4 md:gap-6">
-                <a href="tel:+918920799177" class="hover:text-amber-400 transition flex items-center font-medium">
-                    <i class="fas fa-phone-alt mr-2 text-amber-400"></i> +91 8920799177
-                </a>
-                <a href="mailto:disservices712@gmail.com" class="hover:text-amber-400 transition flex items-center font-medium">
-                    <i class="fas fa-envelope mr-2 text-amber-400"></i> disservices712@gmail.com
-                </a>
-            </div>
-            <div class="flex items-center gap-2 text-amber-400 font-semibold animate-pulse">
-                <span class="h-2 w-2 rounded-full bg-green-400 inline-block"></span>
-                Delhi's #1 Rated Doorstep IT Support Within 30 Mins!
-            </div>
+    <!-- टॉप बार -->
+    <div class="top-banner">
+        <div>
+            <a href="tel:+918920799177"><i class="fas fa-phone-alt"></i> +91 8920799177</a>
         </div>
+        <div>● Doorstep Support Within 30 Mins!</div>
     </div>
 
-    <!-- Main Navigation Header -->
-    <header class="sticky top-0 bg-white/95 backdrop-blur-md shadow-sm z-50 border-b border-slate-100">
-        <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
-            <div class="flex items-center space-x-3.5">
-                <div class="bg-blue-600 text-white p-2.5 rounded-xl font-black text-2xl tracking-wider shadow-md shadow-blue-500/20">DiS</div>
-                <div>
-                    <h1 class="font-black text-xl tracking-tight text-slate-900 leading-none">Delhi Info System</h1>
-                    <p class="text-xs text-bold text-blue-600 tracking-widest uppercase mt-1">Premium IT & Security Solutions</p>
+    <!-- नेविगेशन हेडर -->
+    <header>
+        <div class="nav-container">
+            <div class="logo-area">
+                <div class="logo-box">DiS</div>
+                <div class="logo-text">
+                    <h1>Delhi Info System</h1>
+                    <p>Premium IT Solutions</p>
                 </div>
             </div>
-                 <nav class="hidden md:flex items-center space-x-8 font-bold text-slate-600">
-                <a href="#" class="hover:text-blue-600 transition-colors">Home</a>
-                <a href="#services" class="hover:text-blue-600 transition-colors">Our Services</a>
-                <a href="#booking" class="hover:text-blue-600 transition-colors">Book Appointment</a>
-                <a href="#why-us" class="hover:text-blue-600 transition-colors">Why Choose Us</a>
-                <button onclick="openQRModal()" class="bg-emerald-600 hover:bg-emerald-700 text-white px-5 py-2.5 rounded-xl font-semibold transition-all text-sm border-none cursor-pointer" style="margin-left: 10px;">
-                    Home Visit
-                </button>
-            </nav>
-
-        </div>
-    </header>
-
-    <!-- Ultra Modern Hero Section -->
-    <section class="gradient-bg text-white py-20 lg:py-28 px-4 relative overflow-hidden">
-        <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:16px_16px]"></div>
-        <div class="max-w-5xl mx-auto text-center relative z-10">
-            <span class="bg-blue-500/20 border border-blue-400/30 text-blue-300 font-extrabold px-4 py-1.5 rounded-full text-xs uppercase tracking-widest shadow-inner">
-                <i class="fas fa-certificate mr-1.5 text-amber-400"></i> ISO 9001:2015 Certified IT Experts
-            </span>
-            <h2 class="text-4xl md:text-6xl font-black mt-6 mb-6 leading-tight tracking-tight max-w-4xl mx-auto">
-                Your Trusted Partner for <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-orange-400">Fast Computer Repair</span> & Security Setup
-            </h2>
-            <p class="text-lg md:text-xl text-slate-300 mb-10 max-w-3xl mx-auto font-medium leading-relaxed">
-                Whether it's laptop repairs, custom gaming PCs, corporate networking, printer repairing, toner cartridge refilling, or premium CCTV camera installation, our verified engineers resolve it at your doorstep.
-            </p>
-            <div class="flex flex-col sm:flex-row justify-center items-center gap-4 max-w-md mx-auto sm:max-w-none">
-                <a href="#booking" class="w-full sm:w-auto bg-amber-400 hover:bg-amber-500 text-slate-900 font-extrabold px-8 py-4 rounded-xl shadow-xl shadow-amber-400/10 hover:shadow-amber-400/20 transform hover:-translate-y-0.5 transition-all text-center tracking-wide text-base">
-                    <i class="fas fa-calendar-check mr-2"></i> Book A Technician Slot
-                </a>
-                <a href="https://wa.me/918920799177?text=Hi%20Delhi%20Info%20System,%20I%20need%20expert%20help%20with%20my%20computer." target="_blank" class="w-full sm:w-auto bg-emerald-600 hover:bg-emerald-700 font-extrabold px-8 py-4 rounded-xl shadow-xl shadow-emerald-600/10 hover:shadow-emerald-600/20 flex items-center justify-center gap-2 transform hover:-translate-y-0.5 transition-all text-base">
-                    <i class="fab fa-whatsapp text-2xl animate-bounce"></i> Chat On WhatsApp Live
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Services Cards Grid -->
-    <section id="services" class="py-20 max-w-7xl mx-auto px-4">
-        <div class="text-center mb-16">
-            <h3 class="text-3xl md:text-4xl font-black text-slate-900 tracking-tight">Our Comprehensive IT & Security Services</h3>
-            <p class="text-slate-500 mt-3 text-base md:text-lg max-w-2xl mx-auto">High-quality computer diagnostic repairs, printer services, security setups, and parts upgrades.</p>
-        </div>
-        
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <!-- Service 1: Laptop Repairs -->
-            <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-100 group hover:-translate-y-1">
-                <div class="bg-blue-50 text-blue-600 w-14 h-14 rounded-xl flex items-center justify-center text-2xl font-bold mb-6 group-hover:bg-blue-600 group-hover:text-white transition-colors">
-                    <i class="fas fa-laptop"></i>
-                </div>
-                <h4 class="font-extrabold text-xl mb-3 text-slate-900">Laptop Repairs</h4>
-                <p class="text-slate-600 text-sm leading-relaxed">Screen replacement, hinge fix, keyboard replacement, chip-level logic motherboard troubleshooting for all major global brands.</p>
-            </div>
-            
-            <!-- Service 2: Custom Gaming PCs -->
-            <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-100 group hover:-translate-y-1">
-                <div class="bg-amber-50 text-amber-600 w-14 h-14 rounded-xl flex items-center justify-center text-2xl font-bold mb-6 group-hover:bg-amber-500 group-hover:text-white transition-colors">
-                    <i class="fas fa-gamepad"></i>
-                </div>
-                <h4 class="font-extrabold text-xl mb-3 text-slate-900">Custom Gaming PCs</h4>
-                <p class="text-slate-600 text-sm leading-relaxed">High-performance gaming rigs, heavy video rendering workstations customized with precise liquid cooling setup within your budget range.</p>
-            </div>
-            
-            <!-- Service 3: Corporate Networks -->
-            <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-100 group hover:-translate-y-1">
-                <div class="bg-purple-50 text-purple-600 w-14 h-14 rounded-xl flex items-center justify-center text-2xl font-bold mb-6 group-hover:bg-purple-600 group-hover:text-white transition-colors">
-                    <i class="fas fa-network-wired"></i>
-                </div>
-                <h4 class="font-extrabold text-xl mb-3 text-slate-900">Corporate Networks</h4>
-                <p class="text-slate-600 text-sm leading-relaxed">Commercial structured LAN cabling installations, enterprise robust Wi-Fi setup, router config, firewall deployment.</p>
-            </div>
-            
-            <!-- Service 4: CCTV Camera Installation & Repair -->
-            <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-100 group hover:-translate-y-1">
-                <div class="bg-teal-50 text-teal-600 w-14 h-14 rounded-xl flex items-center justify-center text-2xl font-bold mb-6 group-hover:bg-teal-600 group-hover:text-white transition-colors">
-                    <i class="fas fa-video"></i>
-                </div>
-                <h4 class="font-extrabold text-xl mb-3 text-slate-900">CCTV Camera Setup</h4>
-                <p class="text-slate-600 text-sm leading-relaxed">High-definition CP Plus, Hikvision IP & analog camera installations. Remote mobile viewing configuration and DVR/NVR repair services.</p>
-            </div>
-
-            <!-- Service 5: Printer Repairing -->
-            <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-100 group hover:-translate-y-1">
-                <div class="bg-indigo-50 text-indigo-600 w-14 h-14 rounded-xl flex items-center justify-center text-2xl font-bold mb-6 group-hover:bg-indigo-600 group-hover:text-white transition-colors">
-                    <i class="fas fa-print"></i>
-                </div>
-                <h4 class="font-extrabold text-xl mb-3 text-slate-900">Printer Repairing</h4>
-                <p class="text-slate-600 text-sm leading-relaxed">Expert troubleshooting for Laser, Inkjet, and Thermal printers. Fixing paper jams, connectivity errors, and fuser module replacements.</p>
-            </div>
-
-            <!-- Service 6: Cartridge Refilling -->
-            <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-100 group hover:-translate-y-1">
-                <div class="bg-emerald-50 text-emerald-600 w-14 h-14 rounded-xl flex items-center justify-center text-2xl font-bold mb-6 group-hover:bg-emerald-500 group-hover:text-white transition-colors">
-                    <i class="fas fa-fill-drip"></i>
-                </div>
-                <h4 class="font-extrabold text-xl mb-3 text-slate-900">Cartridge Refilling</h4>
-                <p class="text-slate-600 text-sm leading-relaxed">Super-fast laser toner cartridge refilling with high-density premium black powder. Optical drum replacement for crisp and clear printing output.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Why Choose Us Section -->
-    <section id="why-us" class="bg-slate-900 text-white py-20 px-4">
-        <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div>
-                <span class="text-amber-400 font-extrabold tracking-widest uppercase text-xs">Unmatched Quality Standards</span>
-                <h3 class="text-3xl md:text-4xl font-black tracking-tight mt-2 mb-6">Why Hundreds of Retail & Corporate Clients Trust DiS</h3>
-                <p class="text-slate-400 leading-relaxed mb-8">Delhi Info System delivers certified onsite technical support for commercial businesses and retail computer users across the NCR province with unmatched transparency.</p>
-                <div class="space-y-4">
-                    <div class="flex items-start gap-3">
-                        <i class="fas fa-check-circle text-emerald-400 text-xl mt-0.5"></i>
-                        <div>
-                            <h5 class="font-bold text-base text-slate-200">100% Genuine Certified OEM Spare Parts</h5>
-                        </div>
-                    </div>
-                    <div class="flex items-start gap-3">
-                        <i class="fas fa-check-circle text-emerald-400 text-xl mt-0.5"></i>
-                        <div>
-                            <h5 class="font-bold text-base text-slate-200">No Hidden Costs - Clear Estimate Upfront</h5>
-                        </div>
-                    </div>
-                    <div class="flex items-start gap-3">
-                        <i class="fas fa-check-circle text-emerald-400 text-xl mt-0.5"></i>
-                        <div>
-                            <h5 class="font-bold text-base text-slate-200">30-Day Money-Back Warranty Protection</h5>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="grid grid-cols-2 gap-6">
-                <div class="bg-white/5 border border-white/10 p-6 rounded-2xl text-center">
-                    <div class="text-3xl font-black text-amber-400 mb-1">5,000+</div>
-                    <div class="text-xs uppercase font-bold tracking-wider text-slate-400">Repairs Handled</div>
-                </div>
-                <div class="bg-white/5 border border-white/10 p-6 rounded-2xl text-center">
-                    <div class="text-3xl font-black text-blue-400 mb-1">15+</div>
-                    <div class="text-xs uppercase font-bold tracking-wider text-slate-400">Years Experience</div>
-                </div>
-                <div class="bg-white/5 border border-white/10 p-6 rounded-2xl text-center">
-                    <div class="text-3xl font-black text-purple-400 mb-1">30 Min</div>
-                    <div class="text-xs uppercase font-bold tracking-wider text-slate-400">Onsite Response</div>
-                </div>
-                <div class="bg-white/5 border border-white/10 p-6 rounded-2xl text-center">
-                    <div class="text-3xl font-black text-emerald-400 mb-1">99.4%</div>
-                    <div class="text-xs uppercase font-bold tracking-wider text-slate-400">Happy Clients</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Store Section -->
-    <section id="store" class="py-20 bg-slate-100/50 px-4">
-        <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-16">
-                <h3 class="text-3xl md:text-4xl font-black text-slate-900 tracking-tight">Verified Refurbished Hardware Deals</h3>
-                <p class="text-slate-500 mt-3 text-base md:text-lg max-w-xl mx-auto">Comes with complete diagnostics paperwork and active 6-month support protection.</p>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden group hover:shadow-xl transition-all duration-300">
-                    <div class="p-8">
-                        <div class="flex justify-between items-start mb-4">
-                            <span class="bg-emerald-100 text-emerald-800 text-xs font-black uppercase tracking-widest px-3 py-1 rounded-full">Certified Stock</span>
-                            <span class="text-xs font-bold text-slate-400"><i class="fas fa-shipping-fast mr-1"></i> Delhi Doorstep</span>
-                        </div>
-                        <h4 class="font-black text-2xl text-slate-900 group-hover:text-blue-600 transition-colors">Refurbished ThinkPad L480</h4>
-                        <p class="text-slate-500 font-bold text-sm mt-1">Core i5 8th Gen | 8GB DDR4 RAM | 256GB Ultra SSD</p>
-                        <div class="my-6 border-t border-dashed border-slate-200 pt-4">
-                            <ul class="space-y-2 text-sm text-slate-600 font-medium">
-                                <li><i class="fas fa-check text-emerald-500 mr-2"></i> Original Windows 11 Installed</li>
-                                <li><i class="fas fa-check text-emerald-500 mr-2"></i> Excellent 3+ Hour Battery Life</li>
-                            </ul>
-                        </div>
-                        <div class="flex justify-between items-center pt-4 border-t border-slate-100">
-                            <div>
-                                <span class="text-xs block font-bold text-slate-400 line-through">₹32,000</span>
-                                <span class="text-3xl font-black text-slate-900">₹18,500</span>
-                            </div>
-                            <a href="https://wa.me/918920799177?text=Hi,%20I%20am%20interested%20in%20buying%20the%20Refurbished%20ThinkPad%20L480" target="_blank" class="bg-blue-600 hover:bg-blue-700 text-white font-extrabold px-5 py-3 rounded-xl text-sm flex items-center gap-2 shadow-md shadow-blue-500/10">
-                                <i class="fab fa-whatsapp text-base"></i> Buy Now
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden group hover:shadow-xl transition-all duration-300">
-                    <div class="p-8">
-                        <div class="flex justify-between items-start mb-4">
-                            <span class="bg-emerald-100 text-emerald-800 text-xs font-black uppercase tracking-widest px-3 py-1 rounded-full">Certified Stock</span>
-                            <span class="text-xs font-bold text-slate-400"><i class="fas fa-shipping-fast mr-1"></i> Delhi Doorstep</span>
-                        </div>
-                        <h4 class="font-black text-2xl text-slate-900 group-hover:text-blue-600 transition-colors">Crucial 500GB NVMe M.2 SSD</h4>
-                        <p class="text-slate-500 font-bold text-sm mt-1">High-Speed Gen3 Upgrades | Reads up to 3500MB/s</p>
-                        <div class="my-6 border-t border-dashed border-slate-200 pt-4">
-                            <ul class="space-y-2 text-sm text-slate-600 font-medium">
-                                <li><i class="fas fa-check text-emerald-500 mr-2"></i> Instant Boot & 5x Faster Loading Speeds</li>
-                                <li><i class="fas fa-check text-emerald-500 mr-2"></i> Free Doorstep Fitting Service Included</li>
-                            </ul>
-                        </div>
-                        <div class="flex justify-between items-center pt-4 border-t border-slate-100">
-                            <div>
-                                <span class="text-xs block font-bold text-slate-400 line-through">₹5,500</span>
-                                <span class="text-3xl font-black text-slate-900">₹3,400</span>
-                            </div>
-                            <a href="https://wa.me/918920799177?text=Hi,%20I%20am%20interested%20in%20buying%20the%20Crucial%20500GB%20NVMe%20SSD" target="_blank" class="bg-blue-600 hover:bg-blue-700 text-white font-extrabold px-5 py-3 rounded-xl text-sm flex items-center gap-2 shadow-md shadow-blue-500/10">
-                                <i class="fab fa-whatsapp text-base"></i> Buy Now
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Booking Section -->
-    <section id="booking" class="py-20 max-w-5xl mx-auto px-4">
-        <div class="bg-gradient-to-br from-slate-900 to-blue-950 text-white rounded-3xl p-8 md:p-12 shadow-2xl border border-blue-900/60 relative overflow-hidden">
-            <div class="relative z-10 max-w-3xl mx-auto">
-                <div class="text-center mb-10">
-                    <h3 class="text-3xl font-black mb-3 text-amber-400 tracking-tight">Schedule Hardware Diagnostics & Onsite Repair</h3>
-                    <p class="text-slate-300 text-base leading-relaxed">Fill out this secure deployment portal. Our operations coordinator will assign a field systems engineer within 15 minutes.</p>
-                </div>
-                
-                <form action="https://formspree.io/f/xoevqwny" method="POST" class="space-y-6 text-slate-800">
-                    <div>
-                        <label class="block text-xs font-extrabold text-blue-200 uppercase mb-2 tracking-widest">Full Corporate Name / Individual Name</label>
-                        <input type="text" name="name" required placeholder="John Doe" class="w-full px-4 py-3.5 rounded-xl border border-transparent focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white/90 text-slate-900 font-medium placeholder-slate-400">
-                    </div>
-                    
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                        <div>
-                            <label class="block text-xs font-extrabold text-blue-200 uppercase mb-2 tracking-widest">Contact Phone Number</label>
-                            <input type="tel" name="phone" required placeholder="089207 99177" class="w-full px-4 py-3.5 rounded-xl border border-transparent focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white/90 text-slate-900 font-medium placeholder-slate-400">
-                        </div>
-                        <div>
-                            <label class="block text-xs font-extrabold text-blue-200 uppercase mb-2 tracking-widest">Device Topology / Service</label>
-                            <select name="device_type" class="w-full px-4 py-3.5 rounded-xl border border-transparent focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white/90 text-slate-900 font-bold">
-                                <option>Laptop Repairs & Motherboard Troubleshooting</option>
-                                <option>Custom Built Gaming Desktop PC</option>
-                                <option>CCTV Camera Installation & Repair</option>
-                                <option>Printer Repairing Service</option>
-                                <option>Toner Cartridge & Cartridge Refilling</option>
-                                <option>Commercial Office Networking Setup</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div>
-                        <label class="block text-xs font-extrabold text-blue-200 uppercase mb-2 tracking-widest">Elaborate Current Technical Issue / Requirements</label>
-                        <textarea name="issue_description" required rows="4" placeholder="Briefly write about the issues like device heating up, printer paper jam, CCTV camera offline, toner refilling required, etc..." class="w-full px-4 py-3.5 rounded-xl border border-transparent focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white/90 text-slate-900 font-medium placeholder-slate-400"></textarea>
-                    </div>
-
-                    <button type="submit" class="w-full bg-amber-400 hover:bg-amber-500 text-slate-950 font-black py-4 rounded-xl text-base tracking-wide transition-all shadow-xl shadow-amber-400/10 hover:shadow-lg">
-                        Dispatch Request Now
-                    </button>
-                </form>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="bg-slate-950 text-slate-400 py-8 px-4 border-t border-slate-900 text-center text-sm">
-        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
-            <p class="font-medium">&copy; 2026 Delhi Info System (DiS). All Rights Reserved.</p>
-            <p class="text-xs text-slate-600">Premium Doorstep Technical Hardware Deployments across Delhi NCR.</p>
-        </div>
-    </footer>
-    <!-- QR कोड पॉप-अप विंडो (Modal) स्ट्रक्चर -->
-    <div id="qrModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 9999; justify-content: center; align-items: center; padding: 20px;">
-        <div style="background: white; color: #333333; padding: 30px; border-radius: 16px; max-width: 400px; width: 100%; text-align: center; position: relative; box-shadow: 0 10px 25px rgba(0,0,0,0.3);">
-            <button onclick="closeQRModal()" style="position: absolute; top: 12px; right: 15px; font-size: 26px; background: none; border: none; color: #aaa; cursor: pointer; font-weight: bold;">×</button>
-            <h3 style="color: #1a73e8; font-weight: 700; margin-bottom: 5px; font-size: 20px;">🏠 Doorstep Home Visit</h3>
-            <p style="font-size: 13px; color: #666; margin-bottom: 15px;">Scan this official QR code via GPay, PhonePe, or Paytm to book instant technician deployment.</p>
-            
-            <!-- आपके क्यूआर कोड की इमेज फ़ाइल -->
-            <img src="qr-code.png" alt="Delhi Info System Payment QR" style="width: 220px; height: 220px; border: 2px solid #eee; padding: 8px; background: white; border-radius: 8px; margin: 0 auto 15px auto; display: block;">
-            
-            <div style="background: #f1f5f9; padding: 10px; border-radius: 8px; font-weight: 700; color: #0b1a30; font-size: 14px; border: 1px dashed #cbd5e0;">UPI ID: tmps3240157787347733@slc</div>
-            <p style="font-size: 11px; color: #888; margin-top: 8px;">⚠️ Note: After successful scanning, kindly share the payment snapshot with our support team on WhatsApp.</p>
-        </div>
-    </div>
-
-    <!-- बटन और पॉप-अप को चालू/बंद करने की स्क्रिप्ट -->
-    <script>
-        function openQRModal() { 
-            document.getElementById('qrModal').style.display = 'flex'; 
-        }
-        function closeQRModal() { 
-            document.getElementById('qrModal').style.display = 'none'; 
-        }
-        window.onclick = function(event) {
-            var modal = document.getElementById('qrModal');
-            if (event.target == modal) { 
-                modal.style.display = 'none'; 
-            }
-        }
-    </script>
-
-</body>
-</html>
+            <!-- डेस्कटॉप मेनू लिंक्स -->
+            <ul class="nav-links">
+                <li><a href="#">Home</a></li>
+                <li><a href="#services">Our Services</a></li>
+                <li><a href="#booking">Book Appointment</a></li>
+            </ul>
+            <!-- मोबाइल और डेस्कटॉप दोनों पर दिखने वाले एक्टिव बटन्स -->
+            <div class="header-buttons">
+                <button class="btn-appointment" onclick="document.getElementById('booking').scrollIntoView();">Book Now</button>
